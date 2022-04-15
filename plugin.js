@@ -199,7 +199,7 @@ function Crack() {
         type: description.type,
         answer: description.answer,
         question: description.question
-      })))
+      })), null, 2)
       alert('success')
       window.open = open
       console.log('answer', string)
@@ -225,23 +225,23 @@ function Crack() {
     const matched = url.match(/score=(\d+)/)
     if (matched) {
       const score = +matched[1]
-      if (prevScore === undefined) {
-        prevScore = score
-        if (score === 100) {
-          questionIndex = allQuestions.length - 1
-          allQuestions.forEach(description => {
-            description.answer = description.currentGuess
-          })
-          next()
-        } else {
-          tryAgain()
-        }
+      if (score === 100) {
+        questionIndex = allQuestions.length - 1
+        allQuestions.forEach(description => {
+          description.answer = description.currentGuess
+        })
+        next()
       } else {
-        if (assert(score, prevScore)) {
-          prevScore = Math.max(score, prevScore)
-          next()
-        } else {
+        if (prevScore === undefined) {
+          prevScore = score
           tryAgain()
+        } else {
+          if (assert(score, prevScore)) {
+            prevScore = Math.max(score, prevScore)
+            next()
+          } else {
+            tryAgain()
+          }
         }
       }
     } else {
