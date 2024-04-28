@@ -2,3 +2,7 @@ button{
     width: 200px;
     white-space: nowrap;
 }
+
+button + button{
+    margin-top:8px;
+}

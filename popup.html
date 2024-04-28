@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./popup.css">
 </head>
 <body>
-    <button class="autoAnswer">自动填写答案</button>
-    <button class="soft">软破解</button>
-    <button class="hard">硬破解</button>
+    <div style="padding: 8px;">
+        <button type="button" class="btn-sm btn autoAnswer btn-success">自动填写答案</button>
+        <button type="button" class="btn-sm btn soft btn-primary">软破解并自动提交</button>
+        <button type="button" class="btn-sm btn hard btn-secondary">硬破解并自动提交<br/>(不建议使用)</button>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

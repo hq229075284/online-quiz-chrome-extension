@@ -10,17 +10,15 @@ function autoAnswerCrack() {
       const inputs = Array.from(
         questionDOMList[i].querySelectorAll("input[value]")
       );
+      const answer = question.answer.split("|");
       inputs.forEach((input) => {
-        input.checked = question.answer.split("|").includes(input.value);
+        input.checked = answer.includes(input.value);
       });
     });
   }
 
   const xhr = new XMLHttpRequest();
-  xhr.open(
-    "post",
-    "http://dati.mwr.gov.cn/sjsrzgszsflfgzs/handle/dt/loadRandomQuestion"
-  );
+  xhr.open("post", "/sjsrzgszsflfgzs/handle/dt/loadRandomQuestion");
   const { answerid, paperid } = document.body.dataset;
   const formData = new FormData();
   formData.append("answerId", answerid);
@@ -29,7 +27,7 @@ function autoAnswerCrack() {
   xhr.addEventListener("load", () => {
     const resposne = JSON.parse(xhr.responseText);
     fillAnswer(resposne.result.questions);
-    alert('已完成填写，请自行提交')
+    alert("已完成填写，请自行提交");
   });
 }
 
