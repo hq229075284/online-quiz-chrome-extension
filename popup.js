@@ -17,6 +17,15 @@ document.querySelector('.hard').addEventListener('click', async function () {
   });
 })
 
+document.querySelector('.autoAnswer').addEventListener('click', async function () {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: injectAutoAnswerScript,
+  });
+})
+
 function injectSoftScript() {
   var url = chrome.runtime.getURL('./simple.js');
   var script = document.createElement('script')
@@ -26,6 +35,13 @@ function injectSoftScript() {
 
 function injectHardScript(jsFileName) {
   var url = chrome.runtime.getURL('./plugin.js');
+  var script = document.createElement('script')
+  script.src = url
+  document.body.append(script)
+}
+
+function injectAutoAnswerScript(jsFileName) {
+  var url = chrome.runtime.getURL('./autoAnswer.js');
   var script = document.createElement('script')
   script.src = url
   document.body.append(script)
