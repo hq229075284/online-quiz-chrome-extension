@@ -13,7 +13,7 @@
     "web_accessible_resources":[
       {
         "resources":["*.js"],
-        "matches":["http://dati.mwr.gov.cn/*"]
+        "matches":["http://dati.mwr.gov.cn/*", "http://www.slaqsczsjs.com/*"]
       }
     ]
   }

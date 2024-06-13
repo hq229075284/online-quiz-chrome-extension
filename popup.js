@@ -1,4 +1,3 @@
-
 document.querySelector('.soft').addEventListener('click', async function () {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
@@ -26,6 +25,15 @@ document.querySelector('.autoAnswer').addEventListener('click', async function (
   });
 })
 
+document.querySelector('.slaqsczsjs-autoAnswer').addEventListener('click', async function () {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: injectAutoAnswerScriptForslaqsczsjs,
+  });
+})
+
 function injectSoftScript() {
   var url = chrome.runtime.getURL('./simple.js');
   var script = document.createElement('script')
@@ -42,6 +50,13 @@ function injectHardScript(jsFileName) {
 
 function injectAutoAnswerScript(jsFileName) {
   var url = chrome.runtime.getURL('./autoAnswer.js');
+  var script = document.createElement('script')
+  script.src = url
+  document.body.append(script)
+}
+
+function injectAutoAnswerScriptForslaqsczsjs(jsFileName) {
+  var url = chrome.runtime.getURL('./autoAnswerForslaqsczsjs.js');
   var script = document.createElement('script')
   script.src = url
   document.body.append(script)
